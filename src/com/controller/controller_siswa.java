@@ -5,6 +5,8 @@
  */
 package com.controller;
 
+
+import com.view.tampilan;
 import java.sql.SQLException;
 
 /**
@@ -12,5 +14,6 @@ import java.sql.SQLException;
  * @author PC LAB 2
  */
 public interface controller_siswa {
-    public void Simpan() throws SQLException;
+    public void Simpan(tampilan t) throws SQLException;
+    public void Reset (tampilan t) throws SQLException;
 }
