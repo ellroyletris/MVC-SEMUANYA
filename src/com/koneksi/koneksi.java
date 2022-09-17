@@ -17,7 +17,7 @@ public class koneksi {
     public static Connection getcon() {
         if (con == null) {
             try {
-                String url = "jdbc:mysql://localhost/MVC1";
+                String url = "jdbc:mysql://localhost/sekolahan";
                 String username = "root";
                 String password = "";
                         DriverManager.registerDriver(new com.mysql.jdbc.Driver());
