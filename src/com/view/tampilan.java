@@ -21,6 +21,7 @@ public class tampilan extends javax.swing.JFrame {
     
     public tampilan() {
         initComponents();
+      
        
     }
 
@@ -53,8 +54,8 @@ public class tampilan extends javax.swing.JFrame {
         cbJurusan = new javax.swing.JComboBox<>();
         btnBaru = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnubah = new javax.swing.JButton();
+        btnhapus = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -120,9 +121,21 @@ public class tampilan extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("jButton3");
+        btnubah.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnubah.setText("Ubah");
+        btnubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnubahActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        btnhapus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnhapus.setText("Hapus");
+        btnhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhapusActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("jButton5");
 
@@ -151,9 +164,9 @@ public class tampilan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnubah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnhapus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -177,7 +190,7 @@ public class tampilan extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtNIS, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,8 +216,8 @@ public class tampilan extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBaru)
                     .addComponent(btnSimpan)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(btnubah)
+                    .addComponent(btnhapus)
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,10 +260,25 @@ public class tampilan extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         try {
             model.Simpan(this);
+            model.Reset(this);
+            
         } catch (SQLException ex) {
             Logger.getLogger(tampilan.class.getName()).log(Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
+
+    private void btnubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnubahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnubahActionPerformed
+
+    private void btnhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusActionPerformed
+          try {
+            model.Hapus(this);
+     
+        } catch (SQLException ex) {
+            Logger.getLogger(tampilan.class.getName()).log(Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_btnhapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,11 +318,11 @@ public class tampilan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBaru;
     public javax.swing.JButton btnSimpan;
+    public javax.swing.JButton btnhapus;
+    private javax.swing.JButton btnubah;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     public javax.swing.JComboBox<String> cbJurusan;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
