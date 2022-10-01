@@ -1,4 +1,4 @@
-/*
+                                                                                                    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import com.view.tampilan;
+import java.sql.ResultSet;
+import java.sql.Statement;
 /**
  *
  * @author PC LAB 2
@@ -35,12 +37,13 @@ prepare.setString(2, t.txtNama.getText());
 prepare.setString(3, jk);
 prepare.setString(4, (String) t.cbJurusan.getSelectedItem());
 prepare.executeUpdate();
-JOptionPane.showMessageDialog(null, "sudah masuk kok daddy");
+JOptionPane.showMessageDialog(null, "Data berhasil diubah");
 prepare.close();
 } catch (Exception e){
 System.out.println(e);
 } finally {
-
+Tampil(t);
+    
         } 
     }
 
@@ -74,7 +77,8 @@ System.out.println(e);
 } catch (Exception e){
         System.out.println(e);
 } finally {
-    //
+    Tampil(t);
+    Reset(t);
 }
     }
 
@@ -82,17 +86,67 @@ System.out.println(e);
     public void Hapus(tampilan t) throws SQLException {
         try{
             Connection con = koneksi.getcon();
-            String sql ="DELETE FROM SISWA WHERE NIS =?";
+            String sql ="DELETE FROM siswa WHERE NIS =?";
             PreparedStatement prepare = con.prepareStatement(sql);
+            prepare.setString(1, t.txtNIS.getText());
             prepare.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
             prepare.close();
         } catch (Exception e){
             System.out.println(e);
     } finally{
-            
+           Tampil(t);
+    Reset(t); 
         }
                 
       }
-   }
+
+    @Override
+    public void Tampil(tampilan t) throws SQLException {
+        t.tblmodel.getDataVector().removeAllElements();
+     t.tblmodel.fireTableDataChanged();
+        try {
+            Connection con = koneksi.getcon();
+            Statement stt = con.createStatement();
+           // Query Menampilkan Semua Data Pada Table Siswa
+           // Dengan Urutan NIS Dari Kecil Ke Besar
+           String sql = "SELECT * FROM siswa";
+           ResultSet res = stt.executeQuery(sql);
+            while (res.next()) {                
+                Object[] ob = new Object[8];
+                ob[0] = res.getString(1);
+                ob[1] = res.getString(2);
+                ob[2] = res.getString(3);
+                ob[3] = res.getString(4);
+                t.tblmodel.addRow(ob);
+            }
+           
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void KlikTabel(tampilan t) throws SQLException {
+        try {
+        int pilih = t.table.getSelectedRow();
+        if (pilih == -1) {
+            return;
+        }
+        t.txtNIS.setText(t.tblmodel.getValueAt(pilih, 0).toString());
+        t.txtNama.setText(t.tblmodel.getValueAt(pilih, 1).toString());
+        t.cbJurusan.setSelectedItem(t.tblmodel.getValueAt(pilih, 3).toString());
+        jk = String.valueOf(t.tblmodel.getValueAt(pilih, 2));
+    } catch (Exception e) {
+    if (t.rbLaki.getText().equals(jk)) {
+    t.rbLaki.setSelected(true);
+} else {
+    t.rbPerempuan.setSelected(true);
+} 
+
+    }
+        }
+            }
+    
+    
 

@@ -18,4 +18,6 @@ public interface controller_siswa {
     public void Reset (tampilan t) throws SQLException;
     public void Ubah (tampilan t) throws SQLException;
     public void Hapus (tampilan t) throws SQLException;
+    public void Tampil (tampilan t) throws SQLException;
+    public void KlikTabel (tampilan t) throws SQLException;
 }
